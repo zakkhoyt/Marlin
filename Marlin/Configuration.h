@@ -96,6 +96,8 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
+  // @zakkhoyt MOTHERBOARD
+  // #define MOTHERBOARD BOARD_CREALITY_V4
   #define MOTHERBOARD BOARD_BTT_SKR_V2_0_REV_B
 #endif
 
@@ -107,6 +109,8 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
+// @zakkhoyt MOTHERBOARD Default Creality (1) SKR2 (-1)
+// #define SERIAL_PORT 1
 #define SERIAL_PORT -1
 
 /**
@@ -861,9 +865,14 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE TMC2209
-#define Y_DRIVER_TYPE TMC2209
-#define Z_DRIVER_TYPE TMC2209
+// @zakkhoyt Default Creality type (TMC2208_STANDALONE) SKR2 type (TMC2209)
+// #define ZAKK_DRIVER_TYPE TMC2208_STANDALONE
+#define ZAKK_DRIVER_TYPE TMC2209
+
+#define X_DRIVER_TYPE ZAKK_DRIVER_TYPE
+#define Y_DRIVER_TYPE ZAKK_DRIVER_TYPE
+#define Z_DRIVER_TYPE ZAKK_DRIVER_TYPE
+
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
@@ -872,8 +881,8 @@
 //#define I_DRIVER_TYPE  A4988
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TMC2209
-#define E1_DRIVER_TYPE TMC2209
+#define E0_DRIVER_TYPE ZAKK_DRIVER_TYPE
+#define E1_DRIVER_TYPE ZAKK_DRIVER_TYPE
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -927,7 +936,12 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+
+// @zakkhoyt Creality default extruder/hotend
+// #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+
+// @zakkhoyt BIQU H2 extruder/hotend
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 932 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1179,7 +1193,12 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -44, -7, 0 }
+
+// @zakkhoyt Creality default hardware with left hand CRTouch mount
+// #define NOZZLE_TO_PROBE_OFFSET { -44, -7, 0 }
+
+// @zakkhoyt BIQU H2 CRTouch mount
+#define NOZZLE_TO_PROBE_OFFSET { -38, 5, 0 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1264,8 +1283,8 @@
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -15
-#define Z_PROBE_OFFSET_RANGE_MAX 15
+#define Z_PROBE_OFFSET_RANGE_MIN -20
+#define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
 #define Z_MIN_PROBE_REPEATABILITY_TEST
@@ -1866,7 +1885,7 @@
 // Preheat Constants - Up to 5 are supported without changes
 //
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_HOTEND 205
 #define PREHEAT_1_TEMP_BED     50
 #define PREHEAT_1_TEMP_CHAMBER 35
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
